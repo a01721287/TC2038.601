@@ -3,7 +3,6 @@
 
 using namespace std;
 
-
 string resolver(int n1,int n2,vector<int> T1, vector<int> T2,vector<int> sal){
     bool solve[n1][n2];
     for (int i = 0; i < n1; i++){
@@ -11,12 +10,23 @@ string resolver(int n1,int n2,vector<int> T1, vector<int> T2,vector<int> sal){
             if (i==j==0||(i==n1&&j==n2)){
                 continue;
             }
-            solve[i,j] = solve[i,j-1]&&T2[j]==sal[j];
+            *solve[i,j] = solve[i,j-1]&&T2[j]==sal[j];
         }
     }
-    
 
-    solve[n1,n2] = sal[n1+n2]==T1[n1]&&T2[n1-1,n2]||sal[n1+n2]==T2[n2]&&solve(n1,n2-1);
+    cout<<endl;
+    for (int i = 0; i < n1; i++){
+        for (int j = 0; j < n2; j++){
+            if (*solve[i,j]){
+                cout<<"t"<<" ";
+            }else{
+                cout<<"f"<<" ";
+            }
+        }
+        cout<<endl;
+    }
+    
+    // *solve[n1,n2] = (sal[n1+n2]==T1[n1]&&T2[n1-1,n2])||(sal[n1+n2]==(T2[n2]&&*solve(n1,n2-1)));
 
 /*     for (int i = 0; i < T1.size(); i++){
         cout<<T1[i]<<" ";
