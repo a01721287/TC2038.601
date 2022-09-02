@@ -4,46 +4,40 @@
 using namespace std;
 
 string resolver(int n1,int n2,vector<int> T1, vector<int> T2,vector<int> sal){
-    bool solve[n1][n2];
-    for (int i = 0; i < n1; i++){
-        for (int j = 0; j < n2; j++){
-            if (i==j==0||(i==n1&&j==n2)){
-                continue;
-            }
-            *solve[i,j] = solve[i,j-1]&&T2[j]==sal[j];
+    bool solve[n1+1][n2+1]={false};
+    
+    //Primero los 0 de renglon y columna
+    solve[0][0] = {true};
+    for (int i = 0; i < n1+1; i++){
+        solve[0][i+1] = solve[0][i]&&(T2[i]==sal[i]);
+    }
+    for (int i = 0; i < n2+1; i++){
+        solve[i+1][0] = solve[i][0]&&(T1[i]==sal[i]);
+    }
+
+    //ahora el relleno
+    for (int i = 1; i < n1+1; i++){
+        for (int j = 1; j < n2+1; j++){
+            solve[i][j] = (sal[(i+j)-1]==T1[i-1])&&solve[i-1][j] || (sal[(i+j)-1]==T2[j-1])&&solve[i][j-1];
         }
     }
 
-    cout<<endl;
-    for (int i = 0; i < n1; i++){
-        for (int j = 0; j < n2; j++){
-            if (*solve[i,j]){
-                cout<<"t"<<" ";
+/*     cout<<endl;
+    for (int i = 0; i < n1+1; i++){
+        for (int j = 0; j < n2+1; j++){
+            if (solve[i][j]){
+                cout<<"T"<<" ";
             }else{
-                cout<<"f"<<" ";
+                cout<<"F"<<" ";
             }
         }
         cout<<endl;
-    }
-    
-    // *solve[n1,n2] = (sal[n1+n2]==T1[n1]&&T2[n1-1,n2])||(sal[n1+n2]==(T2[n2]&&*solve(n1,n2-1)));
+    } */
 
-/*     for (int i = 0; i < T1.size(); i++){
-        cout<<T1[i]<<" ";
+    if (solve[n1][n2]){
+        return "possible";
     }
-    cout<<endl;
-    for (int i = 0; i < T2.size(); i++){
-        cout<<T2[i]<<" ";
-    }
-    cout<<endl;
-    for (int i = 0; i < sal.size(); i++)
-    {
-        cout<<sal[i]<<" ";
-    }
-    cout<<endl;
-
-     */
-    return "possible";
+    return "not possible";
 }
 
 int main(){
@@ -67,7 +61,7 @@ int main(){
             sal.push_back(tmp);
         }
         
-        resolver(n1,n2,T1, T2, sal);
+        cout<<resolver(n1,n2,T1, T2, sal)<<endl;
     }
 }
 
