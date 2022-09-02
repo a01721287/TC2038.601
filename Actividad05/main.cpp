@@ -4,6 +4,29 @@
 using namespace std;
 
 string resolver(int n1,int n2,vector<int> T1, vector<int> T2,vector<int> sal){
+/*     cout<<endl<<"-----------------------"<<endl;
+
+    cout<<"T1:"<<endl;
+    for (int i = 0; i < T1.size(); i++)
+    {
+        cout<<T1[i]<<" ";
+    }
+    cout<<endl;
+
+    cout<<"T2:"<<endl;
+    for (int i = 0; i < T2.size(); i++)
+    {
+        cout<<T2[i]<<" ";
+    }
+    cout<<endl;
+
+    cout<<"Sal:"<<endl;
+    for (int i = 0; i < sal.size(); i++)
+    {
+        cout<<sal[i]<<" ";
+    }
+    cout<<endl<<endl; */
+    
     bool solve[n1+1][n2+1]={false};
     
     //Primero los 0 de renglon y columna
@@ -34,6 +57,7 @@ string resolver(int n1,int n2,vector<int> T1, vector<int> T2,vector<int> sal){
         cout<<endl;
     } */
 
+    // cout<<"solve["<<n1<<"]["<<n2<<"]"<<endl;
     if (solve[n1][n2]){
         return "possible";
     }
@@ -41,8 +65,8 @@ string resolver(int n1,int n2,vector<int> T1, vector<int> T2,vector<int> sal){
 }
 
 int main(){
-    int n1,n2,tmp;
     while (true){
+        int n1,n2,tmp;
         cin>>n1>>n2;
         if (n1==0&&n2==0){
             exit(1);
@@ -60,7 +84,6 @@ int main(){
             cin>>tmp;
             sal.push_back(tmp);
         }
-        
         cout<<resolver(n1,n2,T1, T2, sal)<<endl;
     }
 }
@@ -75,4 +98,7 @@ int main(){
 2 1 2
 1 1 1 2 2 2
 0 0
+
+
+
 */
