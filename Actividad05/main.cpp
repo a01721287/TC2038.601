@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -26,6 +27,30 @@ string resolver(int n1,int n2,vector<int> T1, vector<int> T2,vector<int> sal){
         cout<<sal[i]<<" ";
     }
     cout<<endl<<endl; */
+
+
+    if (n1==0||n2==0){
+        bool check = true;
+        if (n1==0){
+            for (int i = 0; i < sal.size(); i++){
+                if(T2[i]!=sal[i]){
+                    check = false;
+                }
+            }
+        }else if(n2==0){
+            for (int i = 0; i < sal.size(); i++){
+                if(T1[i]!=sal[i]){
+                    check = false;
+                }
+            }
+        }
+        if (check){
+            return "possible";
+        }else{
+            return "not possible";
+        } 
+    }
+    
     
     bool solve[n1+1][n2+1]={false};
     
@@ -65,26 +90,34 @@ string resolver(int n1,int n2,vector<int> T1, vector<int> T2,vector<int> sal){
 }
 
 int main(){
+    vector<string> answ;
     while (true){
         int n1,n2,tmp;
         cin>>n1>>n2;
         if (n1==0&&n2==0){
-            exit(1);
+            break;
         }
         vector<int> T1, T2,sal;
-        for (int i = 0; i < n1; i++){
-            cin>>tmp;
-            T1.push_back(tmp);
+        if (n1!=0){
+            for (int i = 0; i < n1; i++){
+                cin>>tmp;
+                T1.push_back(tmp);
+            }
         }
-        for (int i = 0; i < n2; i++){
-            cin>>tmp;
-            T2.push_back(tmp);
+        if (n2!=0){
+            for (int i = 0; i < n2; i++){
+                cin>>tmp;
+                T2.push_back(tmp);
+            }
         }
         for (int i = 0; i < n1+n2; i++){
             cin>>tmp;
             sal.push_back(tmp);
         }
-        cout<<resolver(n1,n2,T1, T2, sal)<<endl;
+        answ.push_back(resolver(n1,n2,T1, T2, sal));
+    }
+    for (int i = 0; i < answ.size(); i++){
+        cout<<answ[i]<<endl;
     }
 }
 
@@ -98,7 +131,6 @@ int main(){
 2 1 2
 1 1 1 2 2 2
 0 0
-
 
 
 */
