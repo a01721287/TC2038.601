@@ -1,9 +1,16 @@
+/*
+    Alejandro Hernández A01721287
+    Railroad.cpp
+    Sep 4, 2022
+*/
+
 #include <iostream>
 #include <vector>
 #include <string>
 
 using namespace std;
 
+//Complejidad: O(n^2)
 string resolver(int n1,int n2,vector<int> T1, vector<int> T2,vector<int> sal){
 /*     cout<<endl<<"-----------------------"<<endl;
 
@@ -89,6 +96,7 @@ string resolver(int n1,int n2,vector<int> T1, vector<int> T2,vector<int> sal){
     return "not possible";
 }
 
+//Complejidad O(n^2)
 int main(){
     vector<string> answ;
     while (true){
