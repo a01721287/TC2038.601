@@ -1,27 +1,30 @@
 //Algoritmo de Floyd-Warshall
+//A01721287
 #include <iostream>
 #include <climits>
+#include<algorithm>
 using namespace std;
 #define MAX 100
 
 void leeArcos(int mat[MAX][MAX], int p[MAX][MAX], int m){
-int a, b, c; // de Nodo a<->b  con costo c;
-// Incializar Matrices
-for (int i=0; i<MAX; i++){
-mat[i][i] = 0;
-p[i][i] = -1; // -1 significa Conex Directa
-for (int j=i+1; j<MAX; j++){
-mat[i][j] = mat[j][i] = INT_MAX; // INT_MAX = inf
-p[i][j] = p[j][i] = -1;
+    int a, b, c; // de Nodo a<->b  con costo c;
+    // Incializar Matrices
+    for (int i=0; i<MAX; i++){
+        mat[i][i] = 0;
+        p[i][i] = -1; // -1 significa Conex Directa
+        for (int j=i+1; j<MAX; j++){
+            mat[i][j] = mat[j][i] = INT_MAX; // INT_MAX = inf
+            p[i][j] = p[j][i] = -1;
+        }
+    }
+    for (int i=0; i<m; i++){
+        // Recordar que la base es 0 para los arreglos
+        // base1 para la entrada del prog
+        cin >> a >> b >> c;
+        mat[a-1][b-1] = mat[b-1][a-1] = c;
+    }
 }
-}
-for (int i=0; i<m; i++){
-// Recordar que la base es 0 para los arreglos
-// base1 para la entrada del prog
-cin >> a >> b >> c;
-mat[a-1][b-1] = mat[b-1][a-1] = c;
-}
-}
+
 // Complejidad: O(n^3)
 void floyd(int mat[MAX][MAX], int p[MAX][MAX], int n){
 for (int k=0; k<n; k++){
@@ -29,8 +32,8 @@ for (int k=0; k<n; k++){
         for (int j=0; j<n; j++){
             if (mat[i][k] != INT_MAX && 
                 mat[k][j] != INT_MAX &&
-                mat[i][k]+mat[k][j] < mat[i][j]){
-                    mat[i][j] = mat[i][k]+mat[k][j];
+                max(mat[i][k], mat[k][j]) < mat[i][j]){
+                    mat[i][j] = max(mat[i][k],mat[k][j]);
                     p[i][j] = k;
                 }
             }
@@ -54,10 +57,10 @@ void consultas(int mat[MAX][MAX], int p[MAX][MAX], int q){
             cout << "no path" << endl;
         }
         else{
-            cout << "Costo: " << mat[a-1][b-1] 
-            << " Path: " << a << "-";
-            checaTrayectoria(p, a-1, b-1);
-            cout << b << endl;
+            cout << mat[a-1][b-1]<<endl;
+            // << " Path: " << a << "-";
+            // checaTrayectoria(p, a-1, b-1);
+            // cout << b << endl;
         }
     }
 }
@@ -97,10 +100,11 @@ int main(){
     cin >> t;
     for (int i=0; i<t; i++){
         cin >> n >> m >> q;
+        cout<<"Case " <<i+1<<":"<<endl;
         leeArcos(mat, p, m);
-        print(mat, p, n);
+        // print(mat, p, n);
         floyd(mat, p, n);
-        print(mat, p, n);
+        // print(mat, p, n);
         consultas(mat, p, q);
     }
     return 0;
@@ -128,4 +132,13 @@ int main(){
 5 7 40
 7 5 1
 7 2 4
+*/
+/*
+1
+4 4 1
+1 2 90
+1 3 80
+2 4 30
+3 4 60
+1 4
 */
