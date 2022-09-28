@@ -8,7 +8,7 @@ using namespace std;
 
 #define INF INT_MAX
 #define Edge pair <int,int> // a dónde llega y su costo
-#define Graph vector<vector<Edge>> //Vector de pares
+#define Graph vector<vector<Edge> > //Vector de pares
 #define Vertex pair<int,int> //Distancia (costo), ID
 
 //Complejidad O(n log n)
@@ -16,7 +16,7 @@ vector<int> dijkstra(Graph &G, int src){
     vector<int> dist(G.size(), INF);
     dist[src] = 0;
     
-    priority_queue<Vertex, vector<Vertex>, greater<Vertex>>queue;
+    priority_queue<Vertex, vector<Vertex>, greater<Vertex> >queue;
     Vertex vs(0,src);
     queue.push(vs);
     while(!queue.empty()){
@@ -90,7 +90,7 @@ int main(){
                     highest = i+1;
                     // cout << distances[i] << endl;
                 }else{
-                    highest = 2
+                    highest = 2;
                 }
             }
         }
