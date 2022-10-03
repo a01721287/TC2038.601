@@ -16,6 +16,34 @@ struct obj{
     float valpeso; 
 };
 
+int bt_Helper(vector<obj> &datos, int i, int va, int pa, int vp, int N, int PESO, int &valOptimo){
+    if (i<N && pa<=PESO && vp>valOptimo){
+        
+    }
+    
+}
+
+int calculaVP (vector<obj> &datos, int i, int vpAux, int pesoAux, int N, int PESO){
+    int k = i+1;
+    while(k<N && pesoAux + datos[k].valor<=PESO){
+        vpAux += datos[k].valor;
+        pesoAux += datos[k].peso;
+        k++;
+    }
+    if (k<N){
+        vpAux += ((PESO -pesoAux)*datos[k].valpeso);
+    }
+    return vpAux;
+}
+
+//Complejidad: O(2^n) Back Tracking
+int mochBT(vector<obj> &datos, int N, int PESO){
+    int valOptimo = 0;
+    int vpAux = calculaVP(datos, -1, 0, 0, N, PESO);
+    bt_Helper(datos, -1, 0, 0, vpAux, N, PESO, valOptimo);
+    return valOptimo;
+}
+
 //Complejidad O(np)
 int mochDP(vector<obj> &datos, int n, int peso){
     int mat[MAXOBJ][MAXMOCH];
