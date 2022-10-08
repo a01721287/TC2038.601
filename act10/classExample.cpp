@@ -17,9 +17,9 @@ struct obj{
 };
 
 int bt_Helper(vector<obj> &datos, int i, int va, int pa, int vp, int N, int PESO, int &valOptimo){
-    if (i<N && pa<=PESO && vp>valOptimo){
+    // if (i<N && pa<=PESO && vp>valOptimo){
         
-    }
+    // }
     
 }
 
