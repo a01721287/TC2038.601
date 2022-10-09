@@ -52,27 +52,30 @@ void calculaCostoPosible(Nodo &nodoActual, int matAdj[MAX][MAX], int n){
 	}
 }
 
+
 void printMat(int matAdj[MAX][MAX], int n){
+	cout<<endl<<endl;
     for (int i = 0; i <= n; i++){
         for (int j = 0; j <= n; j++){
             cout<<matAdj[i][j]<<" ";
         }
         cout<<endl;
     }
+	cout<<endl<<endl;
 }
 
 void prpq(priority_queue<Nodo> pq){
+	cout<<endl;
 	priority_queue<Nodo> e = pq;
 	cout<<"queue: ";
 	while (!e.empty()){
 		cout<<e.top().costoPos<<", ";
 		e.pop();
 	}
-	cout<<endl;
+	cout<<endl<<endl;
 }
 
 int tsp(int matAdj[MAX][MAX], int n){
-    string path = "";
 	int costoOptimo = INT_MAX;
 	Nodo raiz;
 	raiz.niv = 0;
@@ -83,8 +86,8 @@ int tsp(int matAdj[MAX][MAX], int n){
 	calculaCostoPosible(raiz, matAdj, n);
 	priority_queue<Nodo> pq;
 	pq.push(raiz);
-    // printMat(matAdj, n);
     while (!pq.empty()){
+    	printMat(matAdj, n);
 		// Sacar de pq;
 		// Ver si el CostoPos < Costo Optimo
 		// SI si, generar todos los posibles hijos de este nodo
@@ -96,7 +99,7 @@ int tsp(int matAdj[MAX][MAX], int n){
 
 		Nodo parent = pq.top();
 		if (parent.costoPos < costoOptimo){
-			for (int i = parent.verticeActual+1; i <= n; i++){
+			for (int i = 1; i <= n; i++){
 				if (!parent.visitados[i]){
 					Nodo child;
 					child.niv = parent.niv + 1;
@@ -112,7 +115,7 @@ int tsp(int matAdj[MAX][MAX], int n){
 						if (child.costoPos<costoOptimo){
 							costoOptimo = child.costoPos;
 						}
-					}else if(child.niv< n-2){
+					}else if(child.niv < n-2 && child.costoPos<costoOptimo&& child.costoPos>0){
 						pq.push(child);
 					}
 				}
@@ -176,7 +179,6 @@ void leeArcos(int matAdj[MAX][MAX], int m){
 	}
 }
 
-
 int main(){
 	// n = Cantidad de nodos
 	// m = Cantidad de arcos
@@ -202,6 +204,13 @@ A D 5
 B C 4
 C D 1
 B D 6
+
+4 5
+A B 2
+A C 3
+A D 5
+B C 4
+C D 1
 
 4 5
 A B 5
