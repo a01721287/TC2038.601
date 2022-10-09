@@ -111,11 +111,9 @@ int tsp(int matAdj[MAX][MAX], int n){
 					calculaCostoPosible(child, matAdj, n);
 					// cout<<"SE CALCULÓ: "<<child.costoPos<<endl;
 
-					if (child.niv == n-2){
-						if (child.costoPos<costoOptimo){
-							costoOptimo = child.costoPos;
-						}
-					}else if(child.niv < n-2 && child.costoPos<costoOptimo&& child.costoPos>0){
+					if (child.niv == n-2 && child.costoPos<costoOptimo){
+						costoOptimo = child.costoPos;
+					}else if(child.niv < n-2 && child.costoPos<costoOptimo){
 						pq.push(child);
 					}
 				}
@@ -124,38 +122,6 @@ int tsp(int matAdj[MAX][MAX], int n){
 		}else{
 			pq.pop();
 		}
-
-
-        // Nodo tmp = pq.top();
-        // if (tmp.costoPos < costoOptimo){
-        //     for (int i = 1; i <= n; i++){
-        //         if (matAdj[tmp.verticeActual][i]!=0 && matAdj[tmp.verticeActual][i]<INT_MAX
-		// 			&& !tmp.visitados[i]){
-
-        //             Nodo child;
-        //             child.niv = tmp.niv + 1;
-        //             child.costoAcum = tmp.costoAcum + matAdj[tmp.verticeActual][i];
-	    //             child.verticeActual = i-1;
-	    //             child.verticeAnterior = tmp.verticeActual;
-		// 			child.visitados[i] = true;
-        //             calculaCostoPosible(child, matAdj, n);
-		// 			cout<<"SE CALCULÓ: "<<child.costoPos<<endl;
-        //             if (child.niv == n-2 && child.costoAcum<costoOptimo){
-        //                 costoOptimo = child.costoAcum;
-        //             }else if (child.niv < n-2 && child.costoPos<costoOptimo){
-		// 				cout<<"niv:"<<child.niv<<"acum:"<<child.costoAcum<<"actual:"<<child.verticeActual
-		// 				<<"antes:"<<child.verticeAnterior<<"cosPos:"<<child.costoPos<<endl;
-		// 				// cout<<" "<<child.verticeAnterior<<"-"<<child.verticeActual<<" ";
-		// 				pq.push(child);
-        //             }
-        //         }
-        //     }
-		// 	//Final de nivel
-		// 	pq.pop(); //Quitar el anterior de la fila priorizada
-		// 	prpq(pq); //Imprimir
-        // }else{
-		// 	pq.pop();
-		// }
     }
 	return costoOptimo;
 }
