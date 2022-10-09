@@ -1,5 +1,6 @@
-// Travelling Saleman Problem
-// TSP con Branch & Bound
+// Sparko Birthday II & TSP con Branch & Bound
+//Alejandro Hernández Carrales A01721287
+
 
 #include <iostream>
 #include <climits>
@@ -21,6 +22,7 @@ struct Nodo{
 	}
 };
 
+//Complejidad: O(n^2)
 void calculaCostoPosible(Nodo &nodoActual, int matAdj[MAX][MAX], int n){
 	nodoActual.costoPos = nodoActual.costoAcum;
 	int costoObtenido;
@@ -53,7 +55,7 @@ void calculaCostoPosible(Nodo &nodoActual, int matAdj[MAX][MAX], int n){
 }
 
 
-void printMat(int matAdj[MAX][MAX], int n){
+/* void printMat(int matAdj[MAX][MAX], int n){
 	cout<<endl<<endl;
     for (int i = 0; i <= n; i++){
         for (int j = 0; j <= n; j++){
@@ -62,9 +64,9 @@ void printMat(int matAdj[MAX][MAX], int n){
         cout<<endl;
     }
 	cout<<endl<<endl;
-}
+} */
 
-void prpq(priority_queue<Nodo> pq){
+/* void prpq(priority_queue<Nodo> pq){
 	cout<<endl;
 	priority_queue<Nodo> e = pq;
 	cout<<"queue: ";
@@ -73,8 +75,9 @@ void prpq(priority_queue<Nodo> pq){
 		e.pop();
 	}
 	cout<<endl<<endl;
-}
+} */
 
+//Complejidad: O(2^n)
 int tsp(int matAdj[MAX][MAX], int n){
 	int costoOptimo = INT_MAX;
 	Nodo raiz;
@@ -134,7 +137,7 @@ int tsp(int matAdj[MAX][MAX], int n){
 	return costoOptimo;
 }
 
-
+//Complejidad: O(n^2)
 void iniciaMat(int matAdj[MAX][MAX]){
 	for (int i=0; i<MAX; i++){
 		matAdj[i][i] = 0;
@@ -144,6 +147,7 @@ void iniciaMat(int matAdj[MAX][MAX]){
 	}
 }
 
+//Complejidad: O(n)
 void leeArcos(int matAdj[MAX][MAX], int m){
 	char a, b; 	// De dÃ³nde a dÃ³nde en la trayectoria
 	int c; 		// Costo de la trayectoria
