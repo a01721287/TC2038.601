@@ -17,7 +17,7 @@ struct Nodo{
 	int verticeActual;
 	bool visitados[MAX] = {false};
 	bool operator<(const Nodo &otro) const{	// Para que la fila priorizada tenga priodad
-		return costoPos >= otro.costoPos;	// Costo Posible menor.
+		return costoPos > otro.costoPos;	// Costo Posible menor.
 	}
 };
 
@@ -87,7 +87,7 @@ int tsp(int matAdj[MAX][MAX], int n){
 	priority_queue<Nodo> pq;
 	pq.push(raiz);
     while (!pq.empty()){
-    	printMat(matAdj, n);
+    	// printMat(matAdj, n);
 		// Sacar de pq;
 		// Ver si el CostoPos < Costo Optimo
 		// SI si, generar todos los posibles hijos de este nodo
@@ -108,8 +108,16 @@ int tsp(int matAdj[MAX][MAX], int n){
 					child.verticeAnterior = parent.verticeActual;
 					copy(begin(parent.visitados), end(parent.visitados), begin(child.visitados));
 					child.visitados[i] = true;
+
+					if (child.costoAcum<0){
+						child.costoAcum = INT_MAX;
+					}
+
 					calculaCostoPosible(child, matAdj, n);
-					// cout<<"SE CALCULÓ: "<<child.costoPos<<endl;
+
+					if (child.costoPos<0){
+						child.costoPos = INT_MAX;
+					}
 
 					if (child.niv == n-2 && child.costoPos<costoOptimo){
 						costoOptimo = child.costoPos;
