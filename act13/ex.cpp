@@ -66,11 +66,11 @@ void despM(int D[MAX][MAX], int P[MAX][MAX], int n){
 
 void recorre(int P[MAX][MAX], int ini, int fin){
     if (P[ini][fin]!=0){
-        cout<<" (";
+        cout<<"(";
         recorre(P, ini, P[ini][fin]);
         cout<<")x(";
         recorre(P, P[ini][fin]+1, fin);
-        cout<<") ";
+        cout<<")";
     }else{
         char ch = 'A' + ini-1;
         cout <<ch;
