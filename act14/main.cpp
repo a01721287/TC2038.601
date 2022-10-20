@@ -2,6 +2,7 @@
 #include<iostream>
 #include<vector>
 #include<queue>
+#include<climits>
 
 using namespace std;
 
@@ -11,7 +12,6 @@ struct Edge{
     int C;   
     int rev ; 
 };
- 
 
 class Graph{
     int V; 
@@ -103,8 +103,8 @@ int main(){
     // s = tu nodo de salida (source)
     // t = tu nodo de llegada (target)
     cin >> n >> m;
-    s = n;
-    t = 1;
+    s = 1;
+    t = n;
     
     Graph g(n);
     for (int i=0; i<m; i++){
