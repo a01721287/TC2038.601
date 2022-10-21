@@ -1,4 +1,6 @@
 // C++ implementation of Dinic's Algorithm
+//Download Speed Alejandro Hernández A01721287
+
 #include<iostream>
 #include<vector>
 #include<queue>
@@ -81,6 +83,7 @@ int Graph::sendFlow(int u, int flow, int t, int start[]){
     return 0;
 }
  
+ //Complejidad: O(V^2E)
 long Graph::DinicMaxflow(int s, int t){
     // Corner case
     if (s == t)
