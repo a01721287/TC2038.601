@@ -34,7 +34,7 @@ class Graph{
         }
         bool BFS(int s, int t);
         int sendFlow(int s, int flow, int t, int ptr[]);
-        int DinicMaxflow(int s, int t);
+        long DinicMaxflow(int s, int t);
 };
  
 bool Graph::BFS(int s, int t){
@@ -81,12 +81,12 @@ int Graph::sendFlow(int u, int flow, int t, int start[]){
     return 0;
 }
  
-int Graph::DinicMaxflow(int s, int t){
+long Graph::DinicMaxflow(int s, int t){
     // Corner case
     if (s == t)
         return -1;
  
-    int total = 0;   
+    long total = 0;   
     while (BFS(s, t)){
         int *start = new int[V+1] {0};
         while (int flow = sendFlow(s, INT_MAX, t, start)){
