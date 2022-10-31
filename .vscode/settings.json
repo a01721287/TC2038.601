@@ -16,6 +16,8 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
-        "climits": "cpp"
+        "climits": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp"
     }
 }

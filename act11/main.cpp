@@ -149,7 +149,7 @@ void iniciaMat(int matAdj[MAX][MAX]){
 
 //Complejidad: O(n)
 void leeArcos(int matAdj[MAX][MAX], int m){
-	char a, b; 	// De dÃ³nde a dÃ³nde en la trayectoria
+	char a, b; 	// De donde a donde en la trayectoria
 	int c; 		// Costo de la trayectoria
 	for (int i=0; i<m; i++){
 		cin >> a >> b >> c;
