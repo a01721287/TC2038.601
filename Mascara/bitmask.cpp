@@ -27,12 +27,12 @@ int main(){
     int pos;
     uchar b = 11;
     print(b);
-    cout<<"cual bit prendo?";
+    cout<<"cual bit prendo?     ";
     cin >>pos;
     b = add(b, pos);
     print(b);
 
-    cout<<"cual bit apago?";
+    cout<<"cual bit apago?      ";
     cin >>pos;
     b = remove(b, pos);
     print(b);
